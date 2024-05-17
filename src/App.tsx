@@ -1,15 +1,16 @@
 import { useState } from "react";
 import EpisodeView from "./EpisodeView";
 
-function App() {
-  interface Episode {
-    id: number;
-    season: number;
-    number: number;
-    name: string;
-    summary: string;
-  }
+export interface Episode {
+  id: number;
+  season: number;
+  number: number;
+  name: string;
+  summary: string;
+  image: { medium: string };
+}
 
+function App() {
   const [arrayOfEpisodeObjects, setArrayOfEpisodeObjects] = useState<Episode[]>(
     []
   );
@@ -20,25 +21,18 @@ function App() {
     setArrayOfEpisodeObjects(data);
   }
 
-  const arrayOfEpisodeDetails = arrayOfEpisodeObjects.map((episode, id) => (
-    <ul key={id} className="episode-display">
-      <li>
-        Season {episode.season} Episode {episode.number}
-      </li>
-      <li>{episode.name}</li>
-      <li>{episode.summary.replace(/<\/?p>/gi, "")}</li>
-    </ul>
+  const arrayOfEpisodeDetails = arrayOfEpisodeObjects.map((ep, id) => (
+    <EpisodeView episode={ep} key={id} />
   ));
 
   return (
     <div className="app">
       <button onClick={() => handleFetchClick()}>get episodes</button>
-      <div>
+      <div className="episodeList">
         {arrayOfEpisodeObjects.length > 0
           ? arrayOfEpisodeDetails
           : "empty array"}
       </div>
-      <EpisodeView />
     </div>
   );
 }

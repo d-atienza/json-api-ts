@@ -1,14 +1,22 @@
-.episode-display {
+body {
+  line-height: 1.5;
+}
+
+.episodeView {
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: 5px 5px 5px grey;
   padding: 20px;
-  margin: 10px;
   text-align: center;
-  max-width: 200px;
-  display: inline-block;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.episode-display li{
-  margin: 2px;
+.episodeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
